@@ -11,7 +11,6 @@
 
     export default {
       components: {
-        ProjectCard
       },
       data() {
         return {
@@ -22,8 +21,8 @@
         fetchProjects() {
           axios.get('http://127.0.0.1:8000/api/projects')
           .then(res => {
-            const results = res.data.results
-            this.projects = results.data
+            this.projects = res.data.results
+            // console.log(res.data.results)
 
           })
           .catch(err => {
