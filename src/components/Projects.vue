@@ -1,43 +1,52 @@
 <template>
     <div>
       <div class="projects">
-        <p v-for="project in projects" :key="project.id"> {{ project.title }}</p>
+        <ProjectCard v-for="project in projects" :key="project.id" :project="project" />
       </div> 
     </div> 
   </template>
   
   <script>
+  import ProjectCard from './ProjectCard.vue'
   import axios from 'axios'
 
     export default {
       components: {
+        ProjectCard
       },
+
       data() {
         return {
           projects: [],
         }
       },
       methods: {
-        fetchProjects() {
-          axios.get('http://127.0.0.1:8000/api/projects')
+        fetchProjects(page) {
+          axios.get('http://127.0.0.1:8000/api/projects',{
+            params:{
+                page: page
+            }
+          })
           .then(res => {
-            this.projects = res.data.results
-            // console.log(res.data.results)
+            const results = res.data.results
+            this.links = results.links
+            this.lastPage = results.last_page
+            this.projects = results.data
+            this.currentPage = results.current_page
 
           })
           .catch(err => {
             console.log(err)
           })
+        }
         },
-       
-      },
       mounted() {
-        this.fetchProjects()
+        this.fetchProjects(1)
       },
     }
   </script>
   
-  <style  scoped>
+  <style scoped>
   .projects {
     display: grid;
     gap: 1.5rem;
