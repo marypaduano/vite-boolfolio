@@ -2,7 +2,12 @@
     <div>
       <div class="projects">
         <ProjectCard v-for="project in projects" :key="project.id" :project="project" />
-      </div> 
+      </div>
+      <ul class="pagination">
+        <li :class="[n === currentPage ? 'active' : '','page_link']" v-for="n in lastPage" @click="fetchProjects(n)" :key="n">{{ n }}
+
+        </li>
+      </ul> 
     </div> 
   </template>
   
@@ -18,6 +23,8 @@
       data() {
         return {
           projects: [],
+          lastPage: null,
+          currentPage: 1
         }
       },
       methods: {
@@ -41,7 +48,7 @@
         }
         },
       mounted() {
-        this.fetchProjects(1)
+        this.fetchProjects(this.currentPage)
       },
     }
   </script>
@@ -51,6 +58,26 @@
     display: grid;
     gap: 1.5rem;
     grid-template-columns: repeat(4,1fr);
+  }
+  .pagination {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .page_link{
+    color: white;
+    background-color: cornflowerblue;
+    border-radius: 50%;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 15px;
+  }
+
+  .page_link.active{
+    background-color: blue;
   }
   
   </style>

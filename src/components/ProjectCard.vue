@@ -17,7 +17,7 @@
         }
       },
       mounted() {
-        console.log(this.project.title)
+        console.log(this.project)
       },
     }
   </script>
