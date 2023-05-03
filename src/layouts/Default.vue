@@ -1,8 +1,8 @@
-<template>
+<template class="h-screen">
 
   <NavBar/>
 
-  <main class="h-screen">
+  <main class="content">
     <slot />
 
   </main>
@@ -25,13 +25,9 @@
 </script>
 
 <style scoped>
-.h-screen {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: #333;
-  color: white;
+
+.content {
+    min-height: 100vh;
 }
+
 </style>
