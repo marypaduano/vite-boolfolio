@@ -1,8 +1,17 @@
 <template>
     <Layout>
-      <div class="container">
-        dettaglio post
-      </div>
+      <template v-if="project">
+        <div class="container">
+          <h1>
+            {{project.title}}
+          </h1>
+          <p v-if="project.type">{{ project.type.name }}</p>
+          <ul>
+            <li v-for="technology in project.technologies" :key="technology.slug">{{ technology.name }}</li>
+          </ul>
+          <p v-if="project.description" style="line-height: 28px; font-size: 18px;">{{ project.description }}</p>
+        </div>
+    </template>
     </Layout>
 </template>
 
@@ -17,6 +26,11 @@
         Layout,
         ProjectCard
       },
+      data(){
+        return {
+          project : null
+        }
+      },
       props: ['slug'],
 
       methods: {
@@ -27,13 +41,13 @@
           if(success) {
             this.project = project
           } else {
-            this.$router.replace('./pages/ErrorPage')
+            this.$router.replace('/ErrorPage')
           }
 
         })
         .catch(err => {
           // console.log(err)
-          this.$router.replace(('./pages/ErrorPage'))
+          this.$router.replace('/ErrorPage')
         })
       }
     },
@@ -48,4 +62,17 @@
 </script>
 
 <style scoped>
+
+ul {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+li {
+  list-style: none;
+  padding: 10px;
+  background-color: aqua;
+  border-radius: 15px;
+  max-width: max-content;
+}
 </style>
