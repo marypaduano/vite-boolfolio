@@ -1,10 +1,12 @@
 <template>
     <div class="project-card">
+      <router-link :to="`/portfolio/${project.slug}`">
       <h3>{{ project.title }}</h3>
       <p>{{ project.client }}</p>
       <ul class="tech-list" v-if="project.technologies && project.technologies.length > 0">
         <li class="tech_item" v-for="technology in project.technologies" :key="technology.id">{{ technology.name }}</li>
       </ul>
+    </router-link>
     </div>
 </template>
   
