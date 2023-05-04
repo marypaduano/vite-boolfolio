@@ -1,19 +1,22 @@
 <template>
-      <div class="error_page">
+    <div class="error_page">
         <div class="container">
-          <h1>PAGINA NON TROVATA</h1>
+            <h4><i>Error 404</i></h4>
+            <h1>Pagina non trovata</h1>
         </div>
-      </div>
+    </div>
+</template>
   
-  </template>
+<script>
+
+</script>
   
-  <script>
-  
-  </script>
-  
-  <style scoped>
-  .error_page{
-    min-height: 100vh;
+<style scoped>
+.error_page {
+    height: 100vh;
     background-color: grey;
-  }
-  </style>
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+</style>
